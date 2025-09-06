@@ -5,240 +5,236 @@
 #include <ctype.h>
 #include <string.h>
 
-#define _countof(_Array) (sizeof(_Array) / sizeof(_Array[0]))
+#define _countof(_Array) (sizeof(_Array) / sizeof(_Array[0])) 
 
+// marco example from MSVC
+#define I std::cout <<
+#define like "Hello World" <<
+#define feet std::endl
 
+#define rek(_times) for(int i=0; i<_times; i++){int k = _times-i; std::cout << k << '\n';}
 
 int main() {
-
+	// macro usage example
+	// every word is inerpreted as a separate command, defined above
+	I like feet; // expands to: std::cout << "Hello World" << std::endl;
+	rek(15); // value in () is passed to macro as _times. It is NOT modifiable inside macro.
 	
 
-	//// printf()    - #include <stdio.h>
-	//printf("Hello, World!\n");
+	// printf()    - #include <stdio.h>
+	printf("Hello, World!\n");
+	// output: Hello, World!
+	
+	printf("\n");
 
-	////             %d - integer
-	//printf("Value: %d\n", 42);
+	//             %d - integer (whole number)
+	// Note: Use %i or %d for integers, both work the same in printf.
+	// Integers can represent values from -2,147,483,648 to 2,147,483,647.
+	printf("Value with %%d: %d\n", 42);
+	// output: Value with %d: 42
+	printf("Value with %%i: %i\n", 42);
+	// output: Value with %i: 42
+	
+	printf("\n");
 
-	////                 %c - character
- //   printf("Character: %c\n", 'A');
+	//                 %c - character
+	// Note: Characters are enclosed in single quotes ('A'), while strings use double quotes ("Sample").
+	// Characters represent single letters, digits, or symbols.
+	// Characters are stored as integers based on the ASCII table (e.g., 'A' = 65, 'a' = 97).
+	printf("Character: %c\n", 'A');
+	// output: Character: A
+	
+	printf("\n");
 
-	////			    %s - string
-	//printf("String: %s\n", "Sample");
+	//			    %s - string
+	printf("String: %s\n", "Sample");
+	// output: String: Sample
+	
+	printf("\n");
+	
+	//             %.Nf - float, .N - number of digits after decimal point
+	printf("Float: %.5f\n", 3.14159265);
+	// output: Float: 3.14159
+	
+	printf("\n");
 
-	////             %.Nf - float, .N - number of digits after decimal point
-	//printf("Float: %.5f\n", 3.14159265);
+	//           %x - hexadecimal
+	printf("Hex1: %x\n", 255);
+	// output: Hex: ff
+	printf("Hex2: %x\n", 125);
+	// output: Hex: 7d
+	printf("Hex3: %x\n", 0);
+	// output: Hex: 0
+	
+	printf("\n");
 
-	////           %x - hexadecimal
-	//printf("Hex: %x\n", 255);
+	// 		       %o - octal(8-bit system)
+	printf("Octal: %o\n", 34);
+	// output: Octal: 42
+	
+	printf("\n");
 
-	//// 		       %o - octal
-	//printf("Octal: %o\n", 34);
+	//                %u - unsigned integer(non-negative)
+	// Note: Use 'U' suffix for unsigned literals to avoid warnings.
+	// Unsigned integers can represent larger positive values
+	printf("Unsigned: %u\n", 3000000000U);
+	// output: Unsigned: 3000000000
+	
+	printf("\n");
 
-	////                %u - unsigned integer
-	//printf("Unsigned: %u\n", 3000000000U);
+	//			  %ld - long integer
+	// Note: Use 'L' suffix for long literals to avoid warnings.
+	// Long integers can represent larger values than standard integers
+	printf("Long: %ld\n", 1234567890L);
+	// output: Long: 1234567890
+	
+	printf("\n");
 
-	////			  %ld - long integer
-	//printf("Long: %ld\n", 1234567890L);
+	//			  %lld - long long integer
+	// Note: Use 'LL' suffix for long long literals to avoid warnings.
+	// Long long integers can represent even larger values
+	printf("Long Long: %lld\n", 123456789012345LL);
+	// output: Long Long: 123456789012345
+	
+	printf("\n");
 
-	////			  %lld - long long integer
-	//printf("Long Long: %lld\n", 123456789012345LL);
+	//			  %e - scientific notation
+	// Note: Scientific notation is useful for very large or very small numbers.
+	// Example: 1.34e+06 represents 1.34 * 10^6 = 1,340,000
+	// Example: 5.67e-03 represents 5.67 * 10^-3 = 0.00567
+	// The format is: [sign][digit].[digits]e[sign][exponent]
+	printf("Scientific: %e\n", 13436e+10);
+	// output: Scientific: 1.343600e+14
+	printf("Scientific: %e\n", 13436e-10);
+	// output: Scientific: 1.343600e-06
 
-	////			  %e - scientific notation
-	//printf("Scientific: %e\n", 1340000.658);
+	printf("\n");
 
-	////			  %g - use %f or %e based on value and precision
-	//printf("General format: %g\n", 12345.6789);
+	//			  %g - use %f or %e based on value and precision
+	// Note: %g automatically chooses between %f and %e for more compact representation.
+	// It removes trailing zeros and the decimal point if not needed.
+	// Example: 12345.6789 with %g becomes 12345.7 (uses %f)
+	// Example: 123456789 with %g becomes 1.23457e+08 (uses %e)
+	printf("General format: %g\n", 12345.6789);
+	// output: General format: 12345.7
+	printf("General format 2 : %g\n", 123456789);
+	// output: General format: 1.23457e+08
+	
+	printf("\n");
 
-	////			  %% - print a percent sign
-	//printf("Percent sign: %%\n");
+	//			  %% - print a percent sign
+	printf("Percent sign: %%\n");
+	// output: Percent sign: %
+	
+	printf("\n");
 
-	////			  %p - pointer address
-	//int var = 10;
-	//printf("Pointer: %p\n", (void*)&var);
+	//			  %p - pointer address
 	// Note: Always cast to (void*) when printing pointers to avoid warnings.
-	
+	int var = 10;
+	printf("Pointer: %p\n", (void*)&var);
+	// output: Pointer: 0x7ffeedcba098 (address will vary)
+	// Video explanation of pointers: https://www.youtube.com/watch?v=DplxIq0mc_Y
+	// В целом ОЧЕНЬ рекомендую BroCode. Охеренный гайд по С
+
+
+	printf("\n\n");
 
 
 	// scanf_s()   - #include <stdio.h>
 	// Note: scanf_s is a safer version of scanf, but it is not part of the C standard.
+	// TL;DR: Use scanf_s in MSVC, scanf in GCC/Clang.
 	// Example:
-	// int x;
-	// scanf_s("%d", &x);
-	// printf("You entered: %d\n", x);
-	// For strings, you need to provide the buffer size:
-	// char str[100];
-	// scanf("%s", str);
-	// printf("You entered: %s\n", str);
+	int x;
+	printf("Enter an integer: ");
+	scanf_s("%d", &x);
+	printf("You entered: %d\n", x);
 
 
+	printf("\n");
+	
 	// _countof() is defined in stdlib.h
 	// Example:
-
-	//int N = 3;
-
-	//int** matrix = (int**)malloc(N * sizeof(int*));
-	//for (int i = 0; i <= N; ++i) {
-	//	matrix[i] = (int*)malloc(N * sizeof(int));
-	//}
-
-	//for (int i = 0; i <= N; ++i) {
-	//	for (int j = 0; j <= N; ++j) {
-	//		printf("Print: %d ", matrix[i]);
-	//	}
-	//	printf("\n");
-	//}
-
-	// 
-	// char buffer[50];
-	// scanf_s("%s", buffer, (unsigned)_countof(buffer));
-	// printf("You entered: %s\n", buffer);
+	
+	char buffer[50];
+	printf("Enter a string: ");
+	scanf_s("%s", buffer, (unsigned)_countof(buffer));
+	printf("You entered: %s\n", buffer);
 	// Note: _countof is a Microsoft-specific extension and may not be available in all compilers.
 	// Example:
-	// char arr[10];
-	// size_t arrSize = _countof(arr); // arrSize will be 10
-	// printf("Array size is: %zu\n", arrSize);
+	char arr[10];
+	int arrSize = _countof(arr); // arrSize will be 10
+	printf("Array size is: %d\n", arrSize);
 	// Note: _countof is not part of the C standard, so for portable code, use sizeof(arr)/sizeof(arr[0]) instead.
+	// or define your own macro:
+	//		#define _countof(arr) (sizeof(arr) / sizeof(arr[0]))
+
 	
-    
+	printf("\n");
+	
+	
     // malloc()    - #include <stdlib.h>
+	// Allocates memory on the heap.
+	//
 	// free()      - #include <stdlib.h>
+	// Frees memory allocated with malloc.
+	//
 	// Example:
-	// int* ptr = (int*)malloc(10 * sizeof(int)); // allocate memory for 10 integers
-	// if (ptr == NULL) {
-	//     // handle memory allocation failure
-	// }
-	// // use the allocated memory
-	// free(ptr); // free the allocated memory
+	int* ptr = (int*)malloc(10 * sizeof(int)); // allocate memory for 10 integers
+	
+	// use the allocated memory
+	ptr[0] = 42;
+	ptr[1] = 43;
+	ptr[2] = 44;
+	printf("First three values: %d, %d, %d\n", ptr[0], ptr[1], ptr[2]);
+	
+	free(ptr); // free the allocated memory
 	// Always free memory allocated with malloc to avoid memory leaks.
-	// Example:
-	//  int* numbers = (int*)malloc(5 * sizeof(int));
-	//  if (numbers == NULL) {
-	//      // handle allocation failure
-	//  }
-	//  for (int i = 0; i < 5; i++) {
-	//      numbers[i] = i * 10;
-	//  }
-	//  for (int i = 0; i < 5; i++) {
-	//      printf("%d ", numbers[i]);
-	//  }
-	//  printf("\n");
-	//  free(numbers);
-    
+	 
+
+	// Example 2:
+	int* numbers = (int*)malloc(5 * sizeof(int));
+	for (int i = 0; i < 5; i++) {
+	    numbers[i] = i * 10;
+	}
+	printf("Numbers: ");
+	for (int i = 0; i < 5; i++) {
+	    printf("%d ", numbers[i]);
+	}
+	printf("\n");
+	free(numbers);
+
+
+
+	printf("\n");
 
     // strlen()    - #include <string.h>
-	//const char* str = "Hello";
- //   int len = strlen(str);
-	//printf("Length of '%s' is %d\n", str, len);
+	// Gives length of string
+	const char* str = "Hello";
+	int len = strlen(str);
+	printf("Length of '%s' is %d\n", str, len);
 
 	
-    // isdigit()   - #include <ctype.h>      
-	//char ch = '5';
-	//if (isdigit(ch)) {
-	//    printf("'%c' is a digit.\n", ch);
-	//}
-	//else {
-	//    printf("'%c' is not a digit.\n", ch);
-	//}
+	printf("\n");
 
 
-    // atoi()      - #include <stdlib.h>
-	//const char* numStr = "12345";
-	//int num = atoi(numStr);
-	//printf("The integer value is %d\n", num);
-
-
-
-
-
-
-
-
-
-
-
-
-
-    int N;
-    //// Example 1
-    //scanf_s("%d", &N);
-
-
-    // Example 2
-    char input[100];
-    int isNumber = 1;
-
-    printf("Enter something: ");
-    scanf_s("%s", input, (unsigned)_countof(input));
-
-    for (int i = 0; i < strlen(input); i++) {
-        if (!isdigit(input[i])) {
-            isNumber = 0;
-            break;
-        }
-    }
-
-    if (isNumber) {
-        N = atoi(input);
-        printf("It is a number!\n");
-    }
-    else {
-        printf("Not a number!\n");
-    }
-
-
-
-
-
-
-	int** matrix = (int**)malloc(N * sizeof(int*));
-	for (int i = 0; i < N; i++) {
-		matrix[i] = (int*)malloc(N * sizeof(int));
+    // isdigit()   - #include <ctype.h>
+	// Checks if a character is a digit (0-9).
+	 
+	char ch = '5';
+	if (isdigit(ch)) {
+	    printf("'%c' is a digit.\n", ch);
+	}
+	else {
+	    printf("'%c' is not a digit.\n", ch);
 	}
 
 
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            matrix[i][j] = 0;
-        }
-    }
+    // atoi()      - #include <stdlib.h>
+	// Converts a string to an integer.
+	
+	const char* numStr = "12345";
+	int num = atoi(numStr);
+	printf("The integer value is %d\n", num);
 
-    /*
-    {00, 01, 02, 03, 04},
-    {10, 11, 12, 13, 14},
-    {20, 21, 22, 23, 24},
-    {},
-	{}
-    
-    
-    
-    */
-
-
-
-
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            if (i == j || i + j == N - 1)
-                matrix[i][j] = 1;
-        }
-    }
-
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            if (matrix[i][j] == 1)
-                printf(" * ");
-            else if (matrix[i][j] == 0)
-                printf(" | ");
-            else
-                printf("SMTHG WENT WRONG");
-        }
-        printf("\n");
-    }
-
-    for (int i = 0; i < N; i++) {
-        free(matrix[i]);
-    }
-    free(matrix);
-
-    return 0;
+	return 0;
 }

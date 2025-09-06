@@ -230,8 +230,7 @@ int main() {
 
 
     // atoi()      - #include <stdlib.h>
-	// Converts a string to an integer.
-	
+	// Converts a string to an integer
 	const char* numStr = "12345";
 	int num = atoi(numStr);
 	printf("The integer value is %d\n", num);

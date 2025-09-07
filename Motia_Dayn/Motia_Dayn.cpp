@@ -34,7 +34,20 @@ int main() {
 	// output: Value with %d: 42
 	printf("Value with %%i: %i\n", 42);
 	// output: Value with %i: 42
-	
+	// You can add + or - signs to force sign display
+	printf("Positive: %+d\n", 42);
+	printf("Negative: %+d\n", -42);
+	// You can specify minimum width (pad with spaces)
+	printf("Padded: %5d\n", 42);
+	// output: Padded:    42
+	// Pad with zeros instead of spaces
+	printf("Zero padded: %05d\n", 42);
+	// output: Zero padded: 00042
+	// You can left-align within the width using '-'
+	printf("Left aligned: %-5dend\n", 42);
+	// output: Left aligned: 42   end
+
+
 	printf("\n");
 
 	//                 %c - character
@@ -140,9 +153,107 @@ int main() {
 	printf("\n\n");
 
 
+
+
+	// OPERATORS
+	printf("Operators:\n");
+	int a = 10;
+	int b = 3;
+	
+	// Arithmetic operators: +, -, *, /, %, ++, --
+	printf("Arithmetic operators:\n");
+	printf("a + b = %d\n", a + b); // Addition
+	printf("a - b = %d\n", a - b); // Subtraction
+	printf("a * b = %d\n", a * b); // Multiplication
+	printf("a / b = %d\n", a / b); // Division
+	printf("a %% b = %d\n", a % b); // Modulus
+	printf("a++ = %d\n", a++); // Post-increment add 1 after using
+	printf("++b = %d\n", ++b); // Pre-increment add 1 before using
+
+	printf("a-- = %d\n", a--); // Post-decrement add 1 after using
+	printf("--b = %d\n", --b); // Pre-decrement	add 1 before using
+
+	
+	// Comparison operators: ==, !=, >, <, >=, <=
+	printf("Arithmetic operators:\n");
+	printf("a == b: %d\n", a == b); // Equal
+	printf("a != b: %d\n", a != b); // Not equal
+	printf("a > b: %d\n", a > b);   // Greater than
+	printf("a < b: %d\n", a < b);   // Less than
+	printf("a >= b: %d\n", a >= b); // Greater than or equal
+	printf("a <= b: %d\n", a <= b); // Less than or equal
+
+	// Logical operators: &&, ||, !
+	printf("Logical operators:\n");
+	if (a == 10 && b == 3) // Logical AND
+	{
+		printf("a == 10 and b == 3\n");
+	}
+	if (a == 10 || b == 10) // Logical OR
+	{
+		printf("a == 10 or b == 10\n");
+	}
+	if (!(a == 5)) // Logical NOT
+	{
+		printf("a is not 5\n");
+	}
+
+	// Bitwise operators: &, |, ^, ~
+	int z = 10; // Binary: 1010
+	int i = 4;  // Binary: 0100
+	printf("Bitwise operators:\n");
+	printf("a & b = %d\n", z & i); // Bitwise AND. Result is 0 (Binary: 0000)
+	// Explanation: 1010 & 0100 = 0000 (1&1=0; 0&1=0; 1&0=0; 0&0=1)
+	// 0 & 0 = 0
+	// 1 & 0 = 0 
+	// 0 & 1 = 0
+	// 1 & 1 = 1
+
+	printf("a | b = %d\n", z | i); // Bitwise OR. Result is 14 (Binary: 1110)
+	// Explanation: 1010 | 0100 = 1110 (1|1=1; 0|1=1; 1|0=1; 0|0=0)
+	// 1 | 0 = 1
+	// 0 | 1 = 1
+	// 1 | 1 = 1
+	// 0 | 0 = 0
+
+	printf("a ^ b = %d\n", z ^ i); // Bitwise XOR. Result is 14 (Binary: 1110)
+	// Explanation: 1010 ^ 0100 = 1110 (1^1=0; 0^1=1; 1^0=1; 0^0=0)
+	// 1 ^ 0 = 1
+	// 0 ^ 1 = 1
+	// 1 ^ 1 = 0
+	// 0 ^ 0 = 0
+
+	printf("~a = %d\n", ~z); // Bitwise NOT. Result is -11 (Binary: ...11110101)
+	// Explanation: ~1010 = ...11110101 (inverts all bits, including sign bit)
+
+	printf("x << 1 = %d\n", z << 1); // Left shift. Result is 20 (Binary: 10100)
+	// Explanation: 1010 << 1 = 10100 (shifts bits left, adds 0 on right)
+	printf("x >> 1 = %d\n", z >> 1); // Right shift. Result is 5 (Binary: 0101)
+	// Explanation: 1010 >> 1 = 0101 (shifts bits right, removes rightmost bit)
+
+	// Assignment operators: =, +=, -=, *=, /=, %=
+	printf("Assignment operators:\n");
+	int c = 5; // Assignment
+
+	c += 3; // c = c + 3
+	printf("c = %d +\n", c);
+	c -= 2; // c = c - 2
+	printf("c = %d\n", c);
+	c *= 4; // c = c * 4
+	printf("c = %d\n", c);
+	c /= 3; // c = c / 3
+	printf("c = %d\n", c);
+	c %= 3; // c = c % 3
+	printf("c = %d\n", c);
+	// Note: There are also bitwise assignment operators like &=, |=, ^=, <<=, >>=
+
+
+
+
+
 	// scanf_s()   - #include <stdio.h>
 	// Note: scanf_s is a safer version of scanf, but it is not part of the C standard.
-	// TL;DR: Use scanf_s in MSVC, scanf in GCC/Clang.
+	// TL;DR: Use scanf_s in MSVC, scanf in GCC.
 	// Example:
 	int x;
 	printf("Enter an integer: ");

@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 
 #include <stdio.h>
@@ -18,7 +20,7 @@ int main() {
 	// macro usage example
 	// every word is inerpreted as a separate command, defined above
 	I like feet; // expands to: std::cout << "Hello World" << std::endl;
-	rek(15); // value in () is passed to macro as _times. It is NOT modifiable inside macro.
+	// rek(15); // value in () is passed to macro as _times. It is NOT modifiable inside macro.
 	
 
 	// printf()    - #include <stdio.h>
@@ -252,14 +254,30 @@ int main() {
 
 
 
-	// scanf_s()   - #include <stdio.h>
-	// Note: scanf_s is a safer version of scanf, but it is not part of the C standard.
-	// TL;DR: Use scanf_s in MSVC, scanf in GCC.
+	// scanf()   - #include <stdio.h>
+	// Used to read formatted input from the standard input (keyboard).
+	// Preferable for integer and float input.
 	// Example:
 	int x;
 	printf("Enter an integer: ");
-	scanf_s("%d", &x);
+	scanf("%d", &x);
 	printf("You entered: %d\n", x);
+
+	// fgets() - #include <stdio.h>
+	// Used to read a line of text (string) from the standard input (keyboard).
+	char str1[50];
+	printf("Enter a word: ");
+	getchar(); // clear newline(\n) character from previous input
+	// fgets(variable_name, sizeof(variable_name), stdin);
+	fgets(str1, sizeof(str1), stdin);
+
+	// last character of fgets is '\n', we can replace it with '\0' to terminate string
+	str1[strlen(str1) - 1] = '\0'; // remove newline character if present
+
+	printf("You entered: %s\n", str1);
+
+
+
 
 
 	printf("\n");

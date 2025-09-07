@@ -223,8 +223,9 @@ int main() {
 	// 1 ^ 1 = 0
 	// 0 ^ 0 = 0
 
-	printf("~a = %d\n", ~z); // Bitwise NOT. Result is -11 (Binary: ...11110101)
+	printf("~a = %d\n", ~65); // Bitwise NOT. Result is -11 (Binary: ...11110101)
 	// Explanation: ~1010 = ...11110101 (inverts all bits, including sign bit)
+	// As far as I understood, ~n = -(n+1), so ~10 = -(10+1) = -11
 
 	printf("x << 1 = %d\n", z << 1); // Left shift. Result is 20 (Binary: 10100)
 	// Explanation: 1010 << 1 = 10100 (shifts bits left, adds 0 on right)
